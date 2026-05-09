@@ -26,17 +26,13 @@ OBJECT_FILES = ${SOURCE_FILES:.c=.o}
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-# COLORS - CUSTOM
-BLACK_ON_G	= \033[42;30m
-COLOR_OFF	= \033[0m
-
 # ARCHIVE MERGING
 all: $(NAME)
 
 $(NAME): $(OBJECT_FILES) $(LIBFT)
 	@cp $(LIBFT) $(NAME)
 	@ar -rcs $(NAME) $(OBJECT_FILES)
-	@echo "$(BLACK_ON_G)#     PUSH_SWAP COMPILED    .frnki  #$(COLOR_OFF)"
+	@echo "#    PUSH_SWAP COMPILED VaL & .frnki  #"
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
@@ -46,9 +42,9 @@ $(LIBFT):
 clean:
 	@rm -f $(OBJECT_FILES)
 	@make clean -sC $(LIBFT_DIR)
-	@echo "$(BLACK_ON_G)#      PUSH_SWAP CLEANED    .frnki  #$(COLOR_OFF)"
+	@echo "#     PUSH_SWAP CLEANED VaL & .frnki  #"
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFT)
-re: fclean all
+re: fclean allm
 .PHONY: all clean fclean re
