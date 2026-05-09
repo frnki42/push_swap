@@ -46,5 +46,5 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@rm -f $(LIBFT)
-re: fclean allm
+re: fclean all
 .PHONY: all clean fclean re
