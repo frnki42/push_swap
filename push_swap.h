@@ -17,6 +17,8 @@ typedef struct s_stack
 {
 	int	*nbr;
 	int	size;
-}
+}	t_stack;
+
+int	invalid_input(char **argv);
 
 #endif

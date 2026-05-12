@@ -18,7 +18,7 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
 
 #SRC- & OBJ-FILES
-SOURCE_FILES 	=
+SOURCE_FILES 	=	checks.c
 
 OBJECT_FILES = ${SOURCE_FILES:.c=.o}
 

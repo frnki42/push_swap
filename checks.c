@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: .frnki <frnki@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,17 +11,23 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	push_swap(int size, char **argv)
+static int	has_dupes(char **argv)
 {
-//	if (has_dupes(argv))
-//		return ;
-	(void)argv;
-	ft_printf("size: %i\n", size);
+
 }
 
-int	main(int argc, char **argv)
+static int	exceeds_int(char **argv)
 {
-	if (argc < 2)
-		return (1);
-	push_swap(--argc,argv);
+
 }
+
+static int	no_digits(char **argv)
+{
+
+}
+
+int	invalid_input(char **argv)
+{
+	if (no_digits(argv) || exceeds_int(argv) || has_dupes(argv))
+		return (1);
+
