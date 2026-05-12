@@ -19,7 +19,7 @@ void	push_swap(int size, char **argv)
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2 || invalid_input(argv))
+	if (argc < 2 || invalid_input(++argv))
 		return (1);
-	push_swap(--argc,argv);
+	push_swap(--argc, argv);
 }

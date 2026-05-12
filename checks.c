@@ -25,20 +25,20 @@ static int	exceeds_int(char **argv)
 
 static int	no_digits(char **argv)
 {
-	char	*ptr;
+	char	*str;
 
 	while(*argv)
 	{
-		ptr = *argv;
-		if (*ptr == '-' || *ptr == '+')
-			ptr++;
-		if (!*ptr)
+		str = *argv;
+		if (*str == '-' || *str == '+')
+			str++;
+		if (!*str)
 			return (1);
-		while (*ptr)
+		while (*str)
 		{
-			if (*ptr < '0' || *ptr > '9')
+			if (*str < '0' || *str > '9')
 				return (1);
-			ptr++;
+			str++;
 		}
 		argv++;
 	}
