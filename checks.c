@@ -13,21 +13,25 @@
 
 static int	has_dupes(char **argv)
 {
-
+	(void)argv;
+	return (0);
 }
 
 static int	exceeds_int(char **argv)
 {
-
+	(void)argv;
+	return (0);
 }
 
 static int	no_digits(char **argv)
 {
-
+	(void)argv;
+	return (0);
 }
 
 int	invalid_input(char **argv)
 {
 	if (no_digits(argv) || exceeds_int(argv) || has_dupes(argv))
 		return (1);
-
+	return (0);
+}
