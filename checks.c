@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
+/*
 static int	outside_range(char **argv)
 {
 	(void)argv;
@@ -22,6 +22,7 @@ static int	has_dupes(char **argv)
 	(void)argv;
 	return (0);
 }
+*/
 
 int	no_digits(char **argv)
 {
@@ -42,12 +43,5 @@ int	no_digits(char **argv)
 		}
 		argv++;
 	}
-	return (0);
-}
-
-int	invalid_input(char **argv)
-{
-	if (no_digits(argv) || outside_range(argv) || has_dupes(argv))
-		return (1);
 	return (0);
 }

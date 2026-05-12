@@ -19,7 +19,6 @@ typedef struct s_stack
 	int	size;
 }	t_stack;
 
-int	invalid_input(char **argv);
 int	no_digits(char **argv);
 
 #endif
