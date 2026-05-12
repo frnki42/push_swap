@@ -20,5 +20,6 @@ typedef struct s_stack
 }	t_stack;
 
 int	invalid_input(char **argv);
+int	no_digits(char **argv);
 
 #endif

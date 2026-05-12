@@ -11,19 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+static int	outside_range(char **argv)
+{
+	(void)argv;
+	return (0);
+}
+
 static int	has_dupes(char **argv)
 {
 	(void)argv;
 	return (0);
 }
 
-static int	exceeds_int(char **argv)
-{
-	(void)argv;
-	return (0);
-}
-
-static int	no_digits(char **argv)
+int	no_digits(char **argv)
 {
 	char	*str;
 
@@ -47,7 +47,7 @@ static int	no_digits(char **argv)
 
 int	invalid_input(char **argv)
 {
-	if (no_digits(argv) || exceeds_int(argv) || has_dupes(argv))
+	if (no_digits(argv) || outside_range(argv) || has_dupes(argv))
 		return (1);
 	return (0);
 }
