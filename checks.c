@@ -25,7 +25,23 @@ static int	exceeds_int(char **argv)
 
 static int	no_digits(char **argv)
 {
-	(void)argv;
+	char	*ptr;
+
+	while(*argv)
+	{
+		ptr = *argv;
+		if (*ptr == '-' || *ptr == '+')
+			ptr++;
+		if (!*ptr)
+			return (1);
+		while (*ptr)
+		{
+			if (*ptr < '0' || *ptr > '9')
+				return (1);
+			ptr++;
+		}
+		argv++;
+	}
 	return (0);
 }
 

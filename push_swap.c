@@ -13,15 +13,13 @@
 
 void	push_swap(int size, char **argv)
 {
-//	if (has_dupes(argv))
-//		return ;
 	(void)argv;
 	ft_printf("size: %i\n", size);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2)
+	if (argc < 2 || invalid_input(argv))
 		return (1);
 	push_swap(--argc,argv);
 }
