@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	t_stack	b;
 
 	if (argc < 2 || no_digits(++argv) || init_stacks(&a, &b, --argc)
-			|| set_nbr(&a, argv))
+			|| set_nbr(&a, argv) || has_dupes(&a))
 		return (error_msg(&a, &b));
 	push_swap(&a,&b);
 	free(a.nbr);

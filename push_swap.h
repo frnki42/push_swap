@@ -21,5 +21,6 @@ typedef struct s_stack
 
 int	init_stacks(t_stack *a, t_stack *b, int size);
 int	no_digits(char **argv);
+int	has_dupes(t_stack *a);
 
 #endif
