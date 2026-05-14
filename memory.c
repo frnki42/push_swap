@@ -12,13 +12,15 @@
 #include "push_swap.h"
 
 int	init_stacks(t_stack *a, t_stack *b, int size)
-{ 
+{
+	a->nbr = NULL;
+	b->nbr = NULL;
 	a->nbr = malloc(size * sizeof(int));
 	if (!a->nbr)
 		return (1);
 	b->nbr = malloc(size * sizeof(int));
 	if (!b->nbr)
-		return (free(a->nbr), 2);
+		return (2);
 	a->size = size;
 	b->size = 0;
 	return (0);

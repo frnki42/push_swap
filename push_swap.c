@@ -11,8 +11,12 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	error_msg()
+int	error_msg(t_stack *a, t_stack *b)
 {
+	if (a->nbr)
+		free(a->nbr);
+	if (b->nbr)
+		free(b->nbr);
 	return (write(2, "Error\n", 6));
 }
 
@@ -24,7 +28,7 @@ void	push_swap(t_stack *a, t_stack *b)
 		ft_printf("a->nbr[%i] = %i\n", a->size, a->nbr[a->size]);
 }
 
-void	set_nbr(t_stack *a, char **argv)
+int	set_nbr(t_stack *a, char **argv)
 {
 	int		i;
 	int		k;
@@ -43,8 +47,11 @@ void	set_nbr(t_stack *a, char **argv)
 		k--;
 		while (argv[i][++k] >= '0' && argv[i][k] <= '9')
 			nbr = nbr * 10 + argv[i][k] - '0';
+		if (nbr != (int)nbr)
+			return (1);
 		a->nbr[i] = nbr * sign;
 	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -53,8 +60,9 @@ int	main(int argc, char **argv)
 	t_stack	b;
 
 	if (argc < 2 || no_digits(++argv) || init_stacks(&a, &b, --argc))
-		return (error_msg());
-	set_nbr(&a, argv);
+		return (error_msg(&a, &b));
+	if (set_nbr(&a, argv))
+		return (error_msg(&a, &b));
 	push_swap(&a,&b);
 	free(a.nbr);
 	free(b.nbr);
