@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: .frnki <frnki@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,17 +9,17 @@
 /*   Updated: 2026/04/20 16:20:42 by .frnki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft/libft.h"
+#include "push_swap.h"
 
-typedef struct s_stack
-{
-	int	*nbr;
-	int	size;
-}	t_stack;
-
-int	init_stacks(t_stack *a, t_stack *b, int size);
-int	no_digits(char **argv);
-
-#endif
+int	init_stacks(t_stack *a, t_stack *b, int size)
+{ 
+	a->nbr = malloc(size * sizeof(int));
+	if (!a->nbr)
+		return (1);
+	b->nbr = malloc(size * sizeof(int));
+	if (!b->nbr)
+		return (free(a->nbr), 2);
+	a->size = size;
+	b->size = 0;
+	return (0);
+}
