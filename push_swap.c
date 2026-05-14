@@ -10,13 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-int	error_msg(t_stack *a, t_stack *b)
+void	free_stuff(t_stack *a, t_stack *b)
 {
 	if (a->nbr)
 		free(a->nbr);
 	if (b->nbr)
 		free(b->nbr);
+}
+int	error_msg(t_stack *a, t_stack *b)
+{
+	free_stuff(a, b);
 	return (write(2, "Error\n", 6));
 }
 
@@ -59,9 +62,8 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 
-	if (argc < 2 || no_digits(++argv) || init_stacks(&a, &b, --argc))
-		return (error_msg(&a, &b));
-	if (set_nbr(&a, argv))
+	if (argc < 2 || no_digits(++argv) || init_stacks(&a, &b, --argc)
+			|| set_nbr(&a, argv))
 		return (error_msg(&a, &b));
 	push_swap(&a,&b);
 	free(a.nbr);
