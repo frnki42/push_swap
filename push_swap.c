@@ -23,16 +23,30 @@ void	push_swap(t_stack *a, t_stack *b)
 	while (a->size--)
 		ft_printf("a->nbr[%i] = %i\n", a->size, a->nbr[a->size]);
 }
-/*
-void	set_nbr(t_stack *stack, char **argv)
+
+void	set_nbr(t_stack *a, char **argv)
 {
-	int	i;
+	int		i;
+	int		k;
+	int		sign;
+	long	nbr;
 
 	i = -1;
-	while (++i < stack->size)
-		stack->nbr[i] = ft_atoi(argv[i]);
+	while (++i < a->size)
+	{
+		sign = 1;
+		nbr = 0;
+		k = 0;
+		if (argv[i][k] == '-' || argv[i][k] == '+')
+			if (argv[i][k++] == '-')
+				sign = -sign;
+		k--;
+		while (argv[i][++k] >= '0' && argv[i][k] <= '9')
+			nbr = nbr * 10 + argv[i][k] - '0';
+		a->nbr[i] = nbr * sign;
+	}
 }
-*/
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
@@ -40,7 +54,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2 || no_digits(++argv) || init_stacks(&a, &b, --argc))
 		return (error_msg());
-	//	set_nbr(&a, argv);
+	set_nbr(&a, argv);
 	push_swap(&a,&b);
 	free(a.nbr);
 	free(b.nbr);
