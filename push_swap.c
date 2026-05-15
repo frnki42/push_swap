@@ -23,14 +23,6 @@ int	error_msg(t_stack *a, t_stack *b)
 	return (write(2, "Error\n", 6));
 }
 
-void	push_swap(t_stack *a, t_stack *b)
-{
-	(void)b;
-	ft_printf("size: %i\n", a->size);
-	while (a->size--)
-		ft_printf("a->nbr[%i] = %i\n", a->size, a->nbr[a->size]);
-}
-
 int	set_nbr(t_stack *a, char **argv)
 {
 	int		i;
@@ -57,14 +49,50 @@ int	set_nbr(t_stack *a, char **argv)
 	return (0);
 }
 
+float	get_disorder(t_stack *a)
+{
+	int	i;
+	int	k;
+	int	inv;
+	int	pairs;
+
+	if (a->size == 1)
+		return (0);
+	inv = 0;
+	pairs = 0;
+	i = -1;
+	while (++i < a->size - 1)
+	{
+		k = i;
+		while (++k < a->size)
+		{
+			pairs++;
+			if (a->nbr[i] > a->nbr[k])
+				inv++;
+		}
+	}
+	return ((float)inv / pairs);
+}
+
+void	push_swap(t_stack *a, t_stack *b)
+{
+	(void)b;
+	ft_printf("size: %i\n", a->size);
+	while (a->size--)
+		ft_printf("a->nbr[%i] = %i\n", a->size, a->nbr[a->size]);
+}
+#include <stdio.h>				//remove me!!!
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
+	float	disorder;	
 
 	if (argc < 2 || no_digits(++argv) || init_stacks(&a, &b, --argc)
 			|| set_nbr(&a, argv) || has_dupes(&a))
 		return (error_msg(&a, &b));
+	disorder = get_disorder(&a);
+	printf("disorder: %f\n", disorder);
 	push_swap(&a,&b);
 	free(a.nbr);
 	free(b.nbr);
