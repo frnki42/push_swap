@@ -64,12 +64,9 @@ float	get_disorder(t_stack *a)
 	while (++i < a->size - 1)
 	{
 		k = i;
-		while (++k < a->size)
-		{
-			pairs++;
+		while (++k < a->size && ++pairs)
 			if (a->nbr[i] > a->nbr[k])
 				inv++;
-		}
 	}
 	return ((float)inv / pairs);
 }
