@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
+/*
 int	has_dupes(t_stack *a)
 {
 	int	i;
@@ -26,6 +26,7 @@ int	has_dupes(t_stack *a)
 	}
 	return (0);
 }
+*/
 
 int	no_digits(char **argv)
 {

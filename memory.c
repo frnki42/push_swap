@@ -11,17 +11,10 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	init_stacks(t_stack *a, t_stack *b, int size)
+void	init_stacks(t_stack *a, t_stack *b)
 {
-	a->nbr = NULL;
-	b->nbr = NULL;
-	a->nbr = malloc(size * sizeof(int));
-	if (!a->nbr)
-		return (1);
-	b->nbr = malloc(size * sizeof(int));
-	if (!b->nbr)
-		return (2);
-	a->size = size;
+	a->size = 0;
 	b->size = 0;
-	return (0);
+	a->top = NULL;
+	b->top = NULL;
 }

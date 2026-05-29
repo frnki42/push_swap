@@ -13,14 +13,19 @@
 # define PUSH_SWAP_H
 # include "libft/libft.h"
 
+typedef struct s_node
+{
+	struct s_node	*next;
+	struct s_node	*prev;
+	int				nbr;
+}	t_node;
+
 typedef struct s_stack
 {
-	int	*nbr;
-	int	size;
+	int		size;
+	t_node	*top;
 }	t_stack;
 
-int	init_stacks(t_stack *a, t_stack *b, int size);
-int	no_digits(char **argv);
-int	has_dupes(t_stack *a);
-
+int		no_digits(char **argv);
+void	init_stacks(t_stack *a, t_stack *b);
 #endif
