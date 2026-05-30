@@ -15,14 +15,15 @@
 
 typedef struct s_node
 {
+	int				nbr;
 	struct s_node	*next;
 	struct s_node	*prev;
-	int				nbr;
 }	t_node;
 
 typedef struct s_stack
 {
 	int		size;
+	float	disorder;
 	t_node	*top;
 }	t_stack;
 

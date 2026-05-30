@@ -42,15 +42,27 @@ int	error_msg()
 	return (write(2, "Error\n", 6));
 }
 
+void	print_info(t_stack *a, t_stack *b)
+{
+	printf("a->size: %i\n", a->size);
+	printf("a->disorder: %f\n", a->disorder);
+	printf("a->top: %p\n", a->top);
+	printf("b->size: %i\n", b->size);
+	printf("b->disorder: %f\n", b->disorder);
+	printf("b->top: %p\n", b->top);
+	printf("t_node: %li\n", sizeof(t_node));
+	printf("t_stack: %li\n", sizeof(t_stack));
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
-//	float	disorder;	
 
+	if (argc < 2)
+		return (1);
 	init_stacks(&a, &b);
-	if (argc < 2 || no_digits(++argv))
+	if (no_digits(++argv))
 		return (error_msg());
-	printf(".frnki\n");
-//	disorder = get_disorder(&a);
+	print_info(&a, &b);
 }
