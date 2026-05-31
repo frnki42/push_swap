@@ -12,30 +12,32 @@
 #include "push_swap.h"
 #include <stdio.h>				//remove me!!!
 
-/*
-float	get_disorder(t_stack *a)
+void	set_disorder(t_stack *a)
 {
-	int	i;
-	int	k;
-	int	inv;
-	int	pairs;
+	int		inv;
+	int		pairs;
+	t_node	*cur;
+	t_node	*tmp;
 
-	if (a->size == 1)
-		return (0);
+	if (a->size < 2)
+		return ;
 	inv = 0;
 	pairs = 0;
-	i = -1;
-	while (++i < a->size - 1)
+	cur = a->top;
+	while (cur)
 	{
-		k = i;
-		while (++k < a->size && ++pairs)
-			if (a->nbr[i] > a->nbr[k])
+		tmp = cur->next;
+		while (tmp)
+		{
+			if (cur->nbr > tmp->nbr)
 				inv++;
+			pairs++;
+			tmp = tmp->next;
+		}
+		cur = cur->next;
 	}
-	printf("disorder: %f\n", disorder);
-	return ((float)inv / pairs);
+	a->disorder = (float)inv / pairs;
 }
-*/
 
 void	free_nodes(t_node *top)
 {
@@ -73,6 +75,7 @@ void	print_info(t_stack *a, t_stack *b)
 		printf("%i\n", tmp->nbr);
 		tmp = tmp->next;	
 	}
+	printf("disorder: %f\n", a->disorder);
 }
 
 int	main(int argc, char **argv)
@@ -85,6 +88,7 @@ int	main(int argc, char **argv)
 	init_stacks(&a, &b);
 	if (no_digits(++argv) || fill_a(&a, argv, --argc) || has_dupes(a.top))
 		return (error_msg());
+	set_disorder(&a);
 	print_info(&a, &b);
 	free_nodes(a.top);
 }
