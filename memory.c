@@ -58,7 +58,7 @@ t_node	*new_node(t_node *top, char *str)
 	return (new);
 }
 
-int	fill_stack(t_stack *a, char **argv, int size)
+int	fill_a(t_stack *a, char **argv, int size)
 {
 	t_node	*tmp;
 

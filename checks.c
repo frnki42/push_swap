@@ -10,23 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-/*
-int	has_dupes(t_stack *a)
+int	has_dupes(t_node *top)
 {
-	int	i;
-	int	k;
+	t_node	*cur;
+	t_node	*tmp;
 
-	i = -1;
-	while (++i < a->size)
+	cur = top;
+	while (cur)
 	{
-		k = i;
-		while (++k < a->size) 
-			if (a->nbr[i] == a->nbr[k])
+		tmp = cur->next;
+		while (tmp)
+		{
+			if (cur->nbr == tmp->nbr)
 				return (1);
+			tmp = tmp->next;
+		}
+		cur = cur->next;
 	}
 	return (0);
 }
-*/
 
 int	no_digits(char **argv)
 {

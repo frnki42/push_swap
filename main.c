@@ -83,7 +83,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	init_stacks(&a, &b);
-	if (no_digits(++argv) || fill_stack(&a, argv, --argc))
+	if (no_digits(++argv) || fill_a(&a, argv, --argc) || has_dupes(a.top))
 		return (error_msg());
 	print_info(&a, &b);
 	free_nodes(a.top);
