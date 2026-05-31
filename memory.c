@@ -20,3 +20,33 @@ void	init_stacks(t_stack *a, t_stack *b)
 	a->top = NULL;
 	b->top = NULL;
 }
+
+t_node	*new_node(t_node *top, char *str)
+{
+	t_node	*new;
+
+	(void)str;
+	new = malloc(sizeof(t_node));
+	if (!new)
+		return (NULL);
+	new->prev = NULL;
+	new->next = top;
+	if (top)
+		top->prev = new;
+	return (new);
+}
+
+int	fill_stack(t_stack *a, char **argv, int size)
+{
+	t_node	*tmp;
+
+	while (size--)
+	{
+		tmp = new_node(a->top, argv[size]);
+		if (!tmp)
+			return (free_nodes(a->top), 1);
+		a->top = tmp;
+		a->size++;
+	}
+	return (0);
+}

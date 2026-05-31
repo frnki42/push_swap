@@ -16,8 +16,8 @@
 typedef struct s_node
 {
 	int				nbr;
-	struct s_node	*next;
 	struct s_node	*prev;
+	struct s_node	*next;
 }	t_node;
 
 typedef struct s_stack
@@ -29,4 +29,7 @@ typedef struct s_stack
 
 int		no_digits(char **argv);
 void	init_stacks(t_stack *a, t_stack *b);
+void	free_nodes(t_node *top);
+int	fill_stack(t_stack *a, char **argv, int size);
+
 #endif

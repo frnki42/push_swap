@@ -37,6 +37,18 @@ float	get_disorder(t_stack *a)
 }
 */
 
+void	free_nodes(t_node *top)
+{
+	t_node	*tmp;
+
+	while (top)
+	{
+		tmp = top;
+		top = top->next;
+		free(tmp);		
+	}
+}
+
 int	error_msg()
 {
 	return (write(2, "Error\n", 6));
@@ -62,7 +74,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	init_stacks(&a, &b);
-	if (no_digits(++argv))
+	if (no_digits(++argv) || fill_stack(&a, argv, --argc))
 		return (error_msg());
 	print_info(&a, &b);
+	free_nodes(a.top);
 }

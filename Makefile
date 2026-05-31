@@ -11,27 +11,26 @@
 # **************************************************************************** #
 
 # VARIABLES
-NAME		= push_swap.a
+NAME			= push_swap
 
 # COMPILER
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror
 
 #SRC- & OBJ-FILES
-SOURCE_FILES 	=	checks.c
+SOURCE_FILES 	=	checks.c memory.c push_swap.c
 
-OBJECT_FILES = ${SOURCE_FILES:.c=.o}
+OBJECT_FILES	= ${SOURCE_FILES:.c=.o}
 
 # LIBFT
-LIBFT_DIR	= ./libft
-LIBFT		= $(LIBFT_DIR)/libft.a
+LIBFT_DIR		= ./libft
+LIBFT			= $(LIBFT_DIR)/libft.a
 
 # ARCHIVE MERGING
 all: $(NAME)
 
 $(NAME): $(OBJECT_FILES) $(LIBFT)
-	@cp $(LIBFT) $(NAME)
-	@ar -rcs $(NAME) $(OBJECT_FILES)
+	@ $(CC) $(CFLAGS) $(OBJECT_FILES) $(LIBFT) -o $(NAME)
 	@echo "#    PUSH_SWAP COMPILED VaL & .frnki  #"
 
 $(LIBFT):
