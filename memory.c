@@ -21,14 +21,36 @@ void	init_stacks(t_stack *a, t_stack *b)
 	b->top = NULL;
 }
 
+int	convert_str(char *str, long *nbr)
+{
+	int	sign;
+
+	if (ft_strlen(str) > 11)
+		return (1);
+	sign = 1;
+	*nbr = 0;
+	if (*str == '-' || *str == '+')
+		if (*(str++) == '-')
+			sign = -sign;
+	while (*str >= '0' && *str <= '9')
+		*nbr = *nbr * 10 + *str++ - '0';
+	*nbr = *nbr * sign;
+	if (*nbr != (int)*nbr)
+		return (1);
+	return (0);
+}
+
 t_node	*new_node(t_node *top, char *str)
 {
 	t_node	*new;
+	long	nbr;
 
-	(void)str;
+	if (convert_str(str, &nbr))
+		return (NULL);
 	new = malloc(sizeof(t_node));
 	if (!new)
 		return (NULL);
+	new->nbr = (int)nbr;
 	new->prev = NULL;
 	new->next = top;
 	if (top)

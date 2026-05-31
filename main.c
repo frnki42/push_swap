@@ -56,6 +56,8 @@ int	error_msg()
 
 void	print_info(t_stack *a, t_stack *b)
 {
+	t_node	*tmp;
+	
 	printf("a->size: %i\n", a->size);
 	printf("a->disorder: %f\n", a->disorder);
 	printf("a->top: %p\n", a->top);
@@ -64,6 +66,13 @@ void	print_info(t_stack *a, t_stack *b)
 	printf("b->top: %p\n", b->top);
 	printf("t_node: %li\n", sizeof(t_node));
 	printf("t_stack: %li\n", sizeof(t_stack));
+	printf("nbrs in stack:\n");
+	tmp = a->top;
+	while (tmp)
+	{
+		printf("%i\n", tmp->nbr);
+		tmp = tmp->next;	
+	}
 }
 
 int	main(int argc, char **argv)

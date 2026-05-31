@@ -30,6 +30,6 @@ typedef struct s_stack
 int		no_digits(char **argv);
 void	init_stacks(t_stack *a, t_stack *b);
 void	free_nodes(t_node *top);
-int	fill_stack(t_stack *a, char **argv, int size);
+int		fill_stack(t_stack *a, char **argv, int size);
 
 #endif
