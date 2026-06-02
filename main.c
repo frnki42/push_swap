@@ -12,18 +12,18 @@
 #include "push_swap.h"
 #include <stdio.h>				//remove me!!!
 
-void	set_disorder(t_stack *a)
+void	set_disorder(t_data *data)
 {
 	int		inv;
 	int		pairs;
 	t_node	*cur;
 	t_node	*tmp;
 
-	if (a->size < 2)
+	if (data->a.size < 2)
 		return ;
 	inv = 0;
 	pairs = 0;
-	cur = a->top;
+	cur = data->a.top;
 	while (cur)
 	{
 		tmp = cur->next;
@@ -36,7 +36,7 @@ void	set_disorder(t_stack *a)
 		}
 		cur = cur->next;
 	}
-	a->disorder = (float)inv / pairs;
+	data->disorder = (float)inv / pairs;
 }
 
 void	free_nodes(t_node *top)
@@ -56,39 +56,39 @@ int	error_msg()
 	return (write(2, "Error\n", 6));
 }
 
-void	print_info(t_stack *a, t_stack *b)
+void	print_info(t_data *data)
 {
 	t_node	*tmp;
 	
-	printf("a->size: %i\n", a->size);
-	printf("a->disorder: %f\n", a->disorder);
-	printf("a->top: %p\n", a->top);
-	printf("b->size: %i\n", b->size);
-	printf("b->disorder: %f\n", b->disorder);
-	printf("b->top: %p\n", b->top);
+	printf("a->size: %i\n", data->a.size);
+	printf("a->disorder: %f\n", data->disorder);
+	printf("a->top: %p\n", data->a.top);
+	printf("b->size: %i\n", data->b.size);
+	printf("b->disorder: %f\n", data->disorder);
+	printf("b->top: %p\n", data->b.top);
 	printf("t_node: %li\n", sizeof(t_node));
 	printf("t_stack: %li\n", sizeof(t_stack));
+	printf("t_data: %li\n", sizeof(t_data));
 	printf("nbrs in stack:\n");
-	tmp = a->top;
+	tmp = data->a.top;
 	while (tmp)
 	{
 		printf("%i\n", tmp->nbr);
 		tmp = tmp->next;	
 	}
-	printf("disorder: %f\n", a->disorder);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	a;
-	t_stack	b;
+	t_data	data;
 
 	if (argc < 2)
 		return (1);
-	init_stacks(&a, &b);
-	if (no_digits(++argv) || fill_a(&a, argv, --argc) || has_dupes(a.top))
+	ft_memset(&data, 0, sizeof(t_data));
+	if (no_digits(++argv) || fill_a(&data.a, argv, --argc) 
+			|| has_dupes(data.a.top))
 		return (error_msg());
-	set_disorder(&a);
-	print_info(&a, &b);
-	free_nodes(a.top);
+	set_disorder(&data);
+	print_info(&data);
+	free_nodes(data.a.top);
 }

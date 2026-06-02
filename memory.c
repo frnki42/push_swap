@@ -11,16 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	init_stacks(t_stack *a, t_stack *b)
-{
-	a->size = 0;
-	b->size = 0;
-	a->disorder = 0.0f;
-	b->disorder = 0.0f;
-	a->top = NULL;
-	b->top = NULL;
-}
-
 int	convert_str(char *str, long *nbr)
 {
 	int	sign;

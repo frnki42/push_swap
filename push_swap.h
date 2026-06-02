@@ -13,6 +13,14 @@
 # define PUSH_SWAP_H
 # include "libft/libft.h"
 
+typedef enum e_strategy
+{
+	ADAPTIVE,
+	SIMPLE,
+	MEDIUM,
+	COMPLEX
+}	t_strategy;
+
 typedef struct s_node
 {
 	int				nbr;
@@ -23,12 +31,36 @@ typedef struct s_node
 typedef struct s_stack
 {
 	int		size;
-	float	disorder;
 	t_node	*top;
 }	t_stack;
 
+typedef	struct s_bench
+{
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
+	int	total_ops;
+	int	print;
+}	t_bench;
+
+typedef struct s_data
+{
+	t_stack		a;
+	t_stack		b;
+	t_bench		bench;
+	t_strategy	strategy;
+	float		disorder;
+}	t_data;
+
 int		no_digits(char **argv);
-void	init_stacks(t_stack *a, t_stack *b);
 void	free_nodes(t_node *top);
 int		fill_a(t_stack *a, char **argv, int size);
 int		has_dupes(t_node *top);
