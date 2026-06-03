@@ -64,5 +64,7 @@ int		no_digits(char **argv);
 void	free_nodes(t_node *top);
 int		fill_a(t_stack *a, char **argv, int size);
 int		has_dupes(t_node *top);
+void	is_bench(t_data *data, int *argc, char ***argv);
+void	set_strategy(t_data *data, int *argc, char ***argv);
 
 #endif

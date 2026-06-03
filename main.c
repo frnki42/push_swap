@@ -61,10 +61,11 @@ void	print_info(t_data *data)
 	t_node	*tmp;
 	
 	printf("a->size: %i\n", data->a.size);
-	printf("a->disorder: %f\n", data->disorder);
+	printf("data->disorder: %f\n", data->disorder);
+	printf("data->strategy: %i\n", data->strategy);
+	printf("data->bench.print: %i\n", data->bench.print);
 	printf("a->top: %p\n", data->a.top);
 	printf("b->size: %i\n", data->b.size);
-	printf("b->disorder: %f\n", data->disorder);
 	printf("b->top: %p\n", data->b.top);
 	printf("t_node: %li\n", sizeof(t_node));
 	printf("t_stack: %li\n", sizeof(t_stack));
@@ -85,7 +86,9 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	ft_memset(&data, 0, sizeof(t_data));
-	if (no_digits(++argv) || fill_a(&data.a, argv, --argc) 
+	is_bench(&data, &argc, &argv);
+	set_strategy(&data, &argc, &argv);
+	if (no_digits(argv) || fill_a(&data.a, argv, --argc) 
 			|| has_dupes(data.a.top))
 		return (error_msg());
 	set_disorder(&data);

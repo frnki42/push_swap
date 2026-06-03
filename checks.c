@@ -30,6 +30,31 @@ int	has_dupes(t_node *top)
 	return (0);
 }
 
+void	set_strategy(t_data *data, int *argc, char ***argv)
+{
+	if (!ft_strncmp(**argv, "--simple", 9))
+		data->strategy = SIMPLE;
+	else if (!ft_strncmp(**argv, "--medium", 9))
+		data->strategy = MEDIUM;
+	else if (!ft_strncmp(**argv, "--complex", 10))
+		data->strategy = COMPLEX;
+	else if (!ft_strncmp(**argv, "--adaptive", 11))
+		data->strategy = ADAPTIVE;
+	else
+		return ;
+	(*argv)++;
+	(*argc)--;
+}
+void	is_bench(t_data *data, int *argc, char ***argv)
+{
+	(*argv)++;
+	if (!ft_strncmp(**argv, "--bench", 7))
+	{
+		data->bench.print = 1;
+		(*argc)--;
+		(*argv)++;
+	}
+}
 int	no_digits(char **argv)
 {
 	char	*str;
