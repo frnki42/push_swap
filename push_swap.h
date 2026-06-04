@@ -66,5 +66,8 @@ int		fill_a(t_stack *a, char **argv, int size);
 int		has_dupes(t_node *top);
 void	is_bench(t_data *data, int *argc, char ***argv);
 void	set_strategy(t_data *data, int *argc, char ***argv);
+void	swap_a(t_data *data);
+void	swap_b(t_data *data);
+void	swap_both(t_data *data);
 
 #endif

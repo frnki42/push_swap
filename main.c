@@ -92,6 +92,7 @@ int	main(int argc, char **argv)
 			|| has_dupes(data.a.top))
 		return (error_msg());
 	set_disorder(&data);
+	swap_a(&data);
 	print_info(&data);
 	free_nodes(data.a.top);
 }
