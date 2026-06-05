@@ -70,8 +70,15 @@ void	print_info(t_data *data)
 	printf("t_node: %li\n", sizeof(t_node));
 	printf("t_stack: %li\n", sizeof(t_stack));
 	printf("t_data: %li\n", sizeof(t_data));
-	printf("nbrs in stack:\n");
+	printf("a contains:\n");
 	tmp = data->a.top;
+	while (tmp)
+	{
+		printf("%i\n", tmp->nbr);
+		tmp = tmp->next;	
+	}
+	printf("b contains:\n");
+	tmp = data->b.top;
 	while (tmp)
 	{
 		printf("%i\n", tmp->nbr);
