@@ -26,6 +26,7 @@ void	push_b(t_data *data)
 		data->a.top->prev = NULL;
 	data->a.size--;
 	data->b.size++;
+	data->bench.pb++;
 	write(1, "pb\n", 3);
 }
 
@@ -44,5 +45,6 @@ void	push_a(t_data *data)
 		data->b.top->prev = NULL;
 	data->b.size--;
 	data->a.size++;
+	data->bench.pa++;
 	write(1, "pa\n", 3);
 }
