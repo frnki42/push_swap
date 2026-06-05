@@ -47,7 +47,6 @@ typedef	struct s_bench
 	int	rra;
 	int	rrb;
 	int	rrr;
-	int	total_ops;
 	int	print;
 }	t_bench;
 
@@ -69,6 +68,10 @@ void	set_strategy(t_data *data, int *argc, char ***argv);
 void	swap_a(t_data *data);
 void	swap_b(t_data *data);
 void	swap_both(t_data *data);
+void	push_a(t_data *data);
 void	push_b(t_data *data);
+void	rot_a(t_data *data);
+void	rot_b(t_data *data);
+void	rot_both(t_data *data);
 
 #endif

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: .frnki <frnki@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,46 +11,49 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static void	sa(t_data *data)
+static void	ra(t_data *data)
 {
-	int	tmp;
-
 	if (!data->a.top || !data->a.top->next)
 		return ;
-	tmp = data->a.top->nbr;
-	data->a.top->nbr = data->a.top->next->nbr;
-	data->a.top->next->nbr = tmp;
+	data->a.top->prev = data->a.top->next;
+	while (data->a.top->prev->next)
+		data->a.top->prev = data->a.top->prev->next;
+	data->a.top->prev->next = data->a.top;
+	data->a.top = data->a.top->next;
+	data->a.top->prev->next = NULL;
+	data->a.top->prev = NULL;
 }
 
-static void sb(t_data *data)
+static void	rb(t_data *data)
 {
-	int	tmp;
-
 	if (!data->b.top || !data->b.top->next)
 		return ;
-	tmp = data->b.top->nbr;
-	data->b.top->nbr = data->b.top->next->nbr;
-	data->b.top->next->nbr = tmp;
+	data->b.top->prev = data->b.top->next;
+	while (data->b.top->prev->next)
+		data->b.top->prev = data->b.top->prev->next;
+	data->b.top->prev->next = data->b.top;
+	data->b.top = data->b.top->next;
+	data->b.top->prev->next = NULL;
+	data->b.top->prev = NULL;
 }
 
-void	swap_a(t_data *data)
+void	rot_both(t_data *data)
 {
-	sa(data);
-	data->bench.sa++;
-	write(1, "sa\n", 3);
+	ra(data);
+	rb(data);
+	data->bench.rr++;
+	write(1, "rr\n", 3);
+}
+void	rot_a(t_data *data)
+{
+	ra(data);
+	data->bench.ra++;
+	write(1, "ra\n", 3);
 }
 
-void	swap_b(t_data *data)
+void	rot_b(t_data *data)
 {
-	sb(data);
-	data->bench.sb++;
-	write(1, "sb\n", 3);
-}
-
-void	swap_both(t_data *data)
-{
-	sa(data);
-	sb(data);
-	data->bench.ss++;
-	write(1, "ss\n", 3);
+	rb(data);
+	data->bench.rb++;
+	write(1, "rb\n", 3);
 }
