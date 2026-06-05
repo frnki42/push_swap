@@ -69,5 +69,6 @@ void	set_strategy(t_data *data, int *argc, char ***argv);
 void	swap_a(t_data *data);
 void	swap_b(t_data *data);
 void	swap_both(t_data *data);
+void	push_b(t_data *data);
 
 #endif
