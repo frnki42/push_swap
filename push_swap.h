@@ -73,5 +73,8 @@ void	push_b(t_data *data);
 void	rot_a(t_data *data);
 void	rot_b(t_data *data);
 void	rot_both(t_data *data);
+void	rev_rot_a(t_data *data);
+void	rev_rot_b(t_data *data);
+void	rev_rot_both(t_data *data);
 
 #endif
