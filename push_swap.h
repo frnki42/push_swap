@@ -24,6 +24,7 @@ typedef enum e_strategy
 typedef struct s_node
 {
 	int				nbr;
+	int				rank;
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
@@ -76,5 +77,7 @@ void	rot_both(t_data *data);
 void	rev_rot_a(t_data *data);
 void	rev_rot_b(t_data *data);
 void	rev_rot_both(t_data *data);
+void	sort_simple(t_data *data);
+void	sort_medium(t_data *data);
 
 #endif
