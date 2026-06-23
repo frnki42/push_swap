@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	medium_set_ranks(t_stack *a)
+void	set_ranks(t_stack *a)
 {
 	t_node	*cur;
 	t_node	*cmp;
@@ -121,7 +121,7 @@ void	sort_medium(t_data *data)
 	cs = 1;
 	while (cs * cs < n)
 		++cs;
-	medium_set_ranks(&data->a);
+	set_ranks(&data->a);
 	medium_push_all(data, cs, n);
 	medium_pull_all(data);
 }
