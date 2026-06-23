@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+
 int	has_dupes(t_node *top)
 {
 	t_node	*cur;
@@ -45,6 +46,7 @@ void	set_strategy(t_data *data, int *argc, char ***argv)
 	(*argv)++;
 	(*argc)--;
 }
+
 void	is_bench(t_data *data, int *argc, char ***argv)
 {
 	(*argv)++;
@@ -55,11 +57,12 @@ void	is_bench(t_data *data, int *argc, char ***argv)
 		(*argv)++;
 	}
 }
+
 int	no_digits(char **argv)
 {
 	char	*str;
 
-	while(*argv)
+	while (*argv)
 	{
 		str = *argv;
 		if (*str == '-' || *str == '+')
@@ -75,4 +78,18 @@ int	no_digits(char **argv)
 		argv++;
 	}
 	return (0);
+}
+
+int	is_sorted(t_stack *a)
+{
+	t_node	*cur;
+
+	cur = a->top;
+	while (cur && cur->next)
+	{
+		if (cur->nbr > cur->next->nbr)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
 }
