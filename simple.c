@@ -1,8 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simple.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bjankovics <bjankovics@student.42.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/21 00:00:00 by bjankovics        #+#    #+#             */
+/*   Updated: 2026/06/23 00:00:00 by bjankovics       ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "push_swap.h"
 
-/*
-scans b once, tracks the index of the largest value. Returns position from top
-*/
 static int	simple_find_max(t_stack *b)
 {
 	t_node	*cur;
@@ -27,11 +35,6 @@ static int	simple_find_max(t_stack *b)
 	return (max_pos);
 }
 
-/*
-computes both directions: fwd = pos rotations forward, bck = size - pos backward.
-Takes whichever is smaller. The while (0 < fwd--) pattern executes exactly fwd times and is a no-op when pos == 0
-*/
-
 static void	simple_bring_max(t_data *data, int pos)
 {
 	int	fwd;
@@ -50,10 +53,7 @@ static void	simple_bring_max(t_data *data, int pos)
 			rev_rot_b(data);
 	}
 }
-/*
-push everything to b, then loop: find max position, rotate it to top, pa. 
-Each pa places the current largest on top of a, so the result is ascending after all elements return
-*/
+
 void	sort_simple(t_data *data)
 {
 	int	pos;

@@ -12,12 +12,6 @@
 
 #include "push_swap.h"
 
-/*
-for each node, counts how many nodes have a smaller nbr.
-That count is the node's rank (0 = smallest, n-1 = largest).
-Zero push_swap ops — purely preprocessing
-*/
-
 static void	medium_set_ranks(t_stack *a)
 {
 	t_node	*cur;
@@ -64,15 +58,6 @@ static int	medium_find_max(t_stack *b)
 	return (max_pos);
 }
 
-/*
-pushes chunks in order:
- 	- chunk 0 (ranks 0..cs-1) first
-	- chunk √n-1 last
-So the highest-rank elements end up at the top of b 
-For each chunk, rotates non-matching elements out of the way,
-until all chunk members are pushed. O(n√n) ra/pb ops
-*/
-
 static void	medium_push_all(t_data *data, int cs, int n)
 {
 	int	lo;
@@ -100,12 +85,6 @@ static void	medium_push_all(t_data *data, int cs, int n)
 	}
 }
 
-/*
-global max-extraction with bidirectional rotation (min(pos, b.size - pos)). 
-guarantees the highest-ranked remaining elements are always near the top of b.
-Average rotation per pull ≈ √n/2, giving O(n√n) total rb/rrb/pa ops
-*/
-
 static void	medium_pull_all(t_data *data)
 {
 	int	pos;
@@ -130,12 +109,6 @@ static void	medium_pull_all(t_data *data)
 		push_a(data);
 	}
 }
-/*
-computes cs = ⌈√n⌉ inline, guards size ≤ 1, then runs the three phases.
-	- medium_set_ranks: O(n²) preprocessing, no push_swap ops
-	- medium_push_all: O(n√n) push_swap ops, pushes chunks in order
-	- medium_pull_all: O(n√n) push_swap ops, pulls max-ranked elements
-*/
 
 void	sort_medium(t_data *data)
 {

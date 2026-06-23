@@ -35,7 +35,7 @@ typedef struct s_stack
 	t_node	*top;
 }	t_stack;
 
-typedef	struct s_bench
+typedef struct s_bench
 {
 	int	sa;
 	int	sb;
@@ -79,5 +79,8 @@ void	rev_rot_b(t_data *data);
 void	rev_rot_both(t_data *data);
 void	sort_simple(t_data *data);
 void	sort_medium(t_data *data);
+void	set_ranks(t_stack *a);
+int		is_sorted(t_stack *a);
+void	sort_complex(t_data *data);
 
 #endif
