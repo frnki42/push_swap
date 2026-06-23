@@ -53,7 +53,8 @@ static void	dispatch(t_data *data)
 
 static int	error_msg(void)
 {
-	return (write(2, "Error\n", 6));
+	write(2, "Error\n", 6);
+	return (1);
 }
 
 int	main(int argc, char **argv)
