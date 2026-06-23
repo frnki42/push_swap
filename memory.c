@@ -48,6 +48,18 @@ t_node	*new_node(t_node *top, char *str)
 	return (new);
 }
 
+void	free_nodes(t_node *top)
+{
+	t_node	*tmp;
+
+	while (top)
+	{
+		tmp = top;
+		top = top->next;
+		free(tmp);
+	}
+}
+
 int	fill_a(t_stack *a, char **argv, int size)
 {
 	t_node	*tmp;

@@ -1,89 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: .frnki <frnki@42.fr>                       +#+  +:+       +#+        */
+/*   By: bjankovics <bjankovics@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 04:20:42 by .frnki            #+#    #+#             */
-/*   Updated: 2026/04/20 16:20:42 by .frnki           ###   ########.fr       */
+/*   Updated: 2026/06/23 00:00:00 by bjankovics       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-#include <stdio.h>				//remove me!!!
 
-void	set_disorder(t_data *data)
+static void	bench_print_line(char *name, int count)
 {
-	int		inv;
-	int		pairs;
-	t_node	*cur;
-	t_node	*tmp;
-
-	if (data->a.size < 2)
+	if (!count)
 		return ;
-	inv = 0;
-	pairs = 0;
-	cur = data->a.top;
-	while (cur)
-	{
-		tmp = cur->next;
-		while (tmp)
-		{
-			if (cur->nbr > tmp->nbr)
-				inv++;
-			pairs++;
-			tmp = tmp->next;
-		}
-		cur = cur->next;
-	}
-	data->disorder = (float)inv / pairs;
+	ft_putstr_fd(name, 1);
+	ft_putnbr_fd(count, 1);
+	ft_putchar_fd('\n', 1);
 }
 
-void	free_nodes(t_node *top)
+static void	print_bench(t_bench *b)
 {
-	t_node	*tmp;
-
-	while (top)
-	{
-		tmp = top;
-		top = top->next;
-		free(tmp);		
-	}
+	bench_print_line("sa: ", b->sa);
+	bench_print_line("sb: ", b->sb);
+	bench_print_line("ss: ", b->ss);
+	bench_print_line("pa: ", b->pa);
+	bench_print_line("pb: ", b->pb);
+	bench_print_line("ra: ", b->ra);
+	bench_print_line("rb: ", b->rb);
+	bench_print_line("rr: ", b->rr);
+	bench_print_line("rra: ", b->rra);
+	bench_print_line("rrb: ", b->rrb);
+	bench_print_line("rrr: ", b->rrr);
 }
 
-int	error_msg()
+static void	dispatch(t_data *data)
+{
+	if (data->strategy == SIMPLE)
+		sort_simple(data);
+	else if (data->strategy == MEDIUM)
+		sort_medium(data);
+	else if (data->strategy == COMPLEX)
+		sort_complex(data);
+	else if (data->a.size <= 5)
+		sort_simple(data);
+	else if (data->a.size <= 50)
+		sort_medium(data);
+	else
+		sort_complex(data);
+}
+
+static int	error_msg(void)
 {
 	return (write(2, "Error\n", 6));
-}
-
-void	print_info(t_data *data)
-{
-	t_node	*tmp;
-	
-	printf("a->size: %i\n", data->a.size);
-	printf("data->disorder: %f\n", data->disorder);
-	printf("data->strategy: %i\n", data->strategy);
-	printf("data->bench.print: %i\n", data->bench.print);
-	printf("a->top: %p\n", data->a.top);
-	printf("b->size: %i\n", data->b.size);
-	printf("b->top: %p\n", data->b.top);
-	printf("t_node: %li\n", sizeof(t_node));
-	printf("t_stack: %li\n", sizeof(t_stack));
-	printf("t_data: %li\n", sizeof(t_data));
-	printf("a contains:\n");
-	tmp = data->a.top;
-	while (tmp)
-	{
-		printf("%i\n", tmp->nbr);
-		tmp = tmp->next;	
-	}
-	printf("b contains:\n");
-	tmp = data->b.top;
-	while (tmp)
-	{
-		printf("%i\n", tmp->nbr);
-		tmp = tmp->next;	
-	}
 }
 
 int	main(int argc, char **argv)
@@ -95,11 +65,16 @@ int	main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_data));
 	is_bench(&data, &argc, &argv);
 	set_strategy(&data, &argc, &argv);
-	if (no_digits(argv) || fill_a(&data.a, argv, --argc) 
-			|| has_dupes(data.a.top))
+	if (no_digits(argv) || fill_a(&data.a, argv, --argc)
+		|| has_dupes(data.a.top))
 		return (error_msg());
-	set_disorder(&data);
-	rev_rot_a(&data);
-	print_info(&data);
+	if (is_sorted(&data.a))
+		return (free_nodes(data.a.top), 0);
+	set_ranks(&data.a);
+	dispatch(&data);
+	if (data.bench.print)
+		print_bench(&data.bench);
 	free_nodes(data.a.top);
+	free_nodes(data.b.top);
+	return (0);
 }

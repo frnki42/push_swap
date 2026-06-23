@@ -57,7 +57,6 @@ typedef struct s_data
 	t_stack		b;
 	t_bench		bench;
 	t_strategy	strategy;
-	float		disorder;
 }	t_data;
 
 int		no_digits(char **argv);
