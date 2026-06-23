@@ -39,8 +39,9 @@ void	sort_complex(t_data *data)
 	if (n <= 1)
 		return ;
 	bits = 0;
-	while ((1 << bits) < n)
+	while ((1u << bits) < (unsigned int)n)
 		++bits;
+	set_ranks(&data->a);
 	ii = -1;
 	while (++ii < bits)
 		complex_pass(data, ii);

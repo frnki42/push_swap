@@ -22,7 +22,7 @@ static void	sa(t_data *data)
 	data->a.top->next->nbr = tmp;
 }
 
-static void sb(t_data *data)
+static void	sb(t_data *data)
 {
 	int	tmp;
 

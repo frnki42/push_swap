@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bjankovics <bjankovics@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 04:20:42 by .frnki            #+#    #+#             */
+/*   Created: 2026/04/20 04:20:42 by bjankovics        #+#    #+#             */
 /*   Updated: 2026/06/23 00:00:00 by bjankovics       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -71,7 +71,6 @@ int	main(int argc, char **argv)
 		return (error_msg());
 	if (is_sorted(&data.a))
 		return (free_nodes(data.a.top), 0);
-	set_ranks(&data.a);
 	dispatch(&data);
 	if (data.bench.print)
 		print_bench(&data.bench);

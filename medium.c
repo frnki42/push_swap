@@ -121,6 +121,7 @@ void	sort_medium(t_data *data)
 	cs = 1;
 	while (cs * cs < n)
 		++cs;
+	set_ranks(&data->a);
 	medium_push_all(data, cs, n);
 	medium_pull_all(data);
 }

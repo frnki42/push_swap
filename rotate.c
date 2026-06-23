@@ -44,6 +44,7 @@ void	rot_both(t_data *data)
 	data->bench.rr++;
 	write(1, "rr\n", 3);
 }
+
 void	rot_a(t_data *data)
 {
 	ra(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: .frnki <frnki@42.fr>                       +#+  +:+       +#+        */
+/*   By: bjankovics <bjankovics@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 04:20:42 by .frnki            #+#    #+#             */
-/*   Updated: 2026/04/20 16:20:42 by .frnki           ###   ########.fr       */
+/*   Created: 2026/04/20 04:20:42 by bjankovics        #+#    #+#             */
+/*   Updated: 2026/06/23 00:00:00 by bjankovics       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -33,6 +33,8 @@ int	has_dupes(t_node *top)
 
 void	set_strategy(t_data *data, int *argc, char ***argv)
 {
+	if (!*argv || !**argv)
+		return ;
 	if (!ft_strncmp(**argv, "--simple", 9))
 		data->strategy = SIMPLE;
 	else if (!ft_strncmp(**argv, "--medium", 9))
@@ -50,6 +52,8 @@ void	set_strategy(t_data *data, int *argc, char ***argv)
 void	is_bench(t_data *data, int *argc, char ***argv)
 {
 	(*argv)++;
+	if (!*argv || !**argv)
+		return ;
 	if (!ft_strncmp(**argv, "--bench", 7))
 	{
 		data->bench.print = 1;
