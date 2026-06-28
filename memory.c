@@ -50,6 +50,33 @@ void	free_nodes(t_node *top)
 	}
 }
 
+double	compute_disorder(t_stack *a)
+{
+	t_node	*cur;
+	t_node	*cmp;
+	long	mistakes;
+	long	total;
+
+	if (a->size <= 1)
+		return (0.0);
+	mistakes = 0;
+	total = 0;
+	cur = a->top;
+	while (cur)
+	{
+		cmp = cur->next;
+		while (cmp)
+		{
+			++total;
+			if (cur->nbr > cmp->nbr)
+				++mistakes;
+			cmp = cmp->next;
+		}
+		cur = cur->next;
+	}
+	return ((double)mistakes / (double)total);
+}
+
 int	fill_a(t_stack *a, char **argv, int size)
 {
 	t_node	*tmp;

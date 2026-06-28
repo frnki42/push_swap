@@ -47,8 +47,12 @@ typedef struct s_data
 	t_stack		b;
 	t_bench		bench;
 	t_strategy	strategy;
+	t_strategy	actual;
+	double		disorder;
 }	t_data;
 
+double	compute_disorder(t_stack *a);
+void	print_bench(t_data *data);
 int		no_digits(char **argv);
 void	free_nodes(t_node *top);
 int		fill_a(t_stack *a, char **argv, int size);

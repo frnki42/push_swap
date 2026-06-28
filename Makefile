@@ -18,7 +18,7 @@ CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
 
 #SRC- & OBJ-FILES
-SOURCE_FILES 	=	checks.c complex.c main.c medium.c memory.c push.c \
+SOURCE_FILES 	=	bench.c checks.c complex.c main.c medium.c memory.c push.c \
 					reverse_rotate.c rotate.c simple.c swap.c
 
 OBJECT_FILES	= ${SOURCE_FILES:.c=.o}
